@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { BsPlusCircleFill } from 'react-icons/bs';
 
 const InputTodo = ({ addTodoItem }) => {
   const [title, setTitle] = useState('');
@@ -30,7 +31,9 @@ const InputTodo = ({ addTodoItem }) => {
           onChange={handleChange}
           className="input-text"
         />
-        <button type="submit" className="input-submit">Submit</button>
+        <button type="submit" className="input-submit">
+          <BsPlusCircleFill />
+        </button>
       </form>
       <span className="submit-warning">{message}</span>
     </>
