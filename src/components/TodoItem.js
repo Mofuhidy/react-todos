@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { FaTrash, FaRegEdit } from 'react-icons/fa';
 import styles from '../styles/TodoItem.module.css';
 
 const TodoItem = ({
@@ -43,8 +44,12 @@ const TodoItem = ({
           checked={itemProp.completed}
           onChange={() => handleChange(itemProp.id)}
         />
-        <button type="button" onClick={handleEditing}>Edit</button>
-        <button type="button" onClick={() => delTodo(itemProp.id)}>Delete</button>
+        <button type="button" onClick={handleEditing}>
+          <FaRegEdit />
+        </button>
+        <button type="button" onClick={() => delTodo(itemProp.id)}>
+          <FaTrash />
+        </button>
         <span style={itemProp.completed ? completedStyle : null}>
           {itemProp.title}
         </span>

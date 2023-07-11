@@ -1,26 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import InputTodo from './InputTodo';
 import TodoList from './TodoList';
 
 const TodosLogic = () => {
-  const [todos, setTodos] = useState([
-    {
-      id: uuidv4(),
-      title: 'Setup development environment',
-      completed: true,
-    },
-    {
-      id: uuidv4(),
-      title: 'Develop website and add content',
-      completed: false,
-    },
-    {
-      id: uuidv4(),
-      title: 'Deploy to live server',
-      completed: false,
-    },
-  ]);
+  function todoInit() {
+    const data = localStorage.getItem('tasks');
+    const savedData = JSON.parse(data);
+    return savedData || [];
+  }
+
+  const [todos, setTodos] = useState(todoInit());
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(todos));
+  }, [todos]);
 
   const handleChange = (id) => {
     setTodos((prevState) => prevState.map((todo) => {
